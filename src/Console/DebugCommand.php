@@ -70,9 +70,6 @@ class DebugCommand extends Command
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(Input $input, Output $output)
     {
         $this->output = $output;

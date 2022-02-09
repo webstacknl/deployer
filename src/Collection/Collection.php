@@ -7,6 +7,8 @@
 
 namespace Deployer\Collection;
 
+use Traversable;
+
 class Collection implements CollectionInterface, \Countable
 {
     /**
@@ -36,65 +38,41 @@ class Collection implements CollectionInterface, \Countable
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function has(string $name): bool
     {
         return array_key_exists($name, $this->values);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function set(string $name, $object)
     {
         $this->values[$name] = $object;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new \ArrayIterator($this->values);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetExists($offset): bool
     {
         return $this->has($offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->get($offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->set($offset, $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->values[$offset]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function count(): int
     {
         return count($this->values);

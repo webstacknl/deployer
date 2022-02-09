@@ -17,9 +17,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class AutocompleteCommand extends Command
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function configure()
     {
         $this
@@ -28,9 +25,6 @@ class AutocompleteCommand extends Command
             ->addOption('--install', null, InputOption::VALUE_NONE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('install')) {
@@ -69,7 +63,7 @@ _deployer()
 
         return 0
     fi
-		
+
     # completing for a command
     if [[ $cur == $com ]]; then
         coms=$($script list --raw 2>/dev/null | awk '{print $1}'; exit ${PIPESTATUS[0]})
@@ -87,8 +81,8 @@ BASH
             );
         } else {
             $output->write(<<<'HELP'
-To install Deployer autocomplete run one of the following commands:            
-            
+To install Deployer autocomplete run one of the following commands:
+
 <comment># Bash (Ubuntu/Debian)</comment>
 
   dep autocomplete --install | sudo tee /etc/bash_completion.d/deployer

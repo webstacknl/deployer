@@ -57,9 +57,6 @@ class ParallelExecutor implements ExecutorInterface
         $this->console = $console;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function run(array $tasks, array $hosts)
     {
         $localhost = new Localhost();

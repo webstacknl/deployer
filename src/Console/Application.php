@@ -12,6 +12,7 @@ use Deployer\Component\PharUpdate\Console\Helper as PharUpdateHelper;
 use Deployer\Deployer;
 use Symfony\Component\Console\Application as Console;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -36,10 +37,7 @@ class Application extends Console
      */
     private $after;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultInputDefinition()
+    protected function getDefaultInputDefinition(): InputDefinition
     {
         $inputDefinition = parent::getDefaultInputDefinition();
 
@@ -50,10 +48,7 @@ class Application extends Console
         return $inputDefinition;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultCommands()
+    protected function getDefaultCommands(): array
     {
         $commands = parent::getDefaultCommands();
 
@@ -64,9 +59,6 @@ class Application extends Console
         return $commands;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     private function selfUpdateCommand()
     {
         $selfUpdate = new PharUpdateCommand('self-update');
@@ -75,10 +67,7 @@ class Application extends Console
         return $selfUpdate;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultHelperSet()
+    protected function getDefaultHelperSet(): HelperSet
     {
         $helperSet = parent::getDefaultHelperSet();
 
@@ -117,9 +106,6 @@ class Application extends Console
         return 'phar:' === substr(__FILE__, 0, 5);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function doRunCommand(Command $command, InputInterface $input, OutputInterface $output)
     {
         $exception = null;

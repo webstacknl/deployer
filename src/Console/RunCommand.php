@@ -73,9 +73,6 @@ class RunCommand extends Command
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(Input $input, Output $output)
     {
         $command = $input->getArgument('command-to-run');

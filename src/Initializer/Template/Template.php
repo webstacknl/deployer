@@ -15,9 +15,6 @@ namespace Deployer\Initializer\Template;
  */
 abstract class Template implements TemplateInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function initialize($filePath, $params)
     {
         $params = array_merge([

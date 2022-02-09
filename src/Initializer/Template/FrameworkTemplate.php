@@ -12,9 +12,6 @@ namespace Deployer\Initializer\Template;
  */
 abstract class FrameworkTemplate extends Template
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function getTemplateContent($params)
     {
         $stats = $params['allow_anonymous_stats']
@@ -33,21 +30,21 @@ set('application', 'my_project');
 set('repository', '{$params['repository']}');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 add('shared_files', []);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
+// Writable dirs by web server
 add('writable_dirs', []);
 {$stats}
 
 // Hosts
 
 host('project.com')
-    ->set('deploy_path', '~/{{application}}');    
-    
+    ->set('deploy_path', '~/{{application}}');
+
 // Tasks
 
 task('build', function () {

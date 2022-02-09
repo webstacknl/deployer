@@ -57,9 +57,6 @@ class InitCommand extends Command
         parent::__construct($name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configure()
     {
         $this
@@ -70,9 +67,6 @@ class InitCommand extends Command
             ->addOption('filename', null, InputOption::VALUE_OPTIONAL, 'The file name. Default "deploy.php"', 'deploy.php');
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $template = $input->getOption('template');

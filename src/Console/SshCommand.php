@@ -49,9 +49,6 @@ class SshCommand extends Command
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $hostname = $input->getArgument('hostname');

@@ -97,9 +97,6 @@ class TaskCommand extends Command
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(Input $input, Output $output)
     {
         $stage = $input->hasArgument('stage') ? $input->getArgument('stage') : null;

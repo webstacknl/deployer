@@ -28,9 +28,6 @@ class GroupTask extends Task
         $this->group = $group;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function run(Context $context)
     {
         throw new \RuntimeException("Can't run group task.");

@@ -12,85 +12,51 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class OutputWatcher implements OutputInterface
 {
-    /**
-     * @var OutputInterface
-     */
-    private $output;
+    private OutputInterface $output;
+    private bool $wasWritten = false;
 
-    /**
-     * @var bool
-     */
-    private $wasWritten = false;
-
-    /**
-     * @param OutputInterface $output
-     */
     public function __construct(OutputInterface $output)
     {
         $this->output = $output;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function write($messages, $newline = false, $type = self::OUTPUT_NORMAL)
+    public function write($messages, $newline = false, $options = self::OUTPUT_NORMAL): void
     {
         $this->wasWritten = true;
-        $this->output->write($messages, $newline, $type);
+        $this->output->write($messages, $newline, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function writeln($messages, $type = self::OUTPUT_NORMAL)
+    public function writeln($messages, $options = self::OUTPUT_NORMAL): void
     {
-        $this->write($messages, true, $type);
+        $this->write($messages, true, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setVerbosity($level)
+    public function setVerbosity($level): void
     {
         $this->output->setVerbosity($level);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getVerbosity()
+    public function getVerbosity(): int
     {
         return $this->output->getVerbosity();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setDecorated($decorated)
+    public function setDecorated($decorated): void
     {
         $this->output->setDecorated($decorated);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isDecorated()
+    public function isDecorated(): bool
     {
         return $this->output->isDecorated();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setFormatter(OutputFormatterInterface $formatter)
+    public function setFormatter(OutputFormatterInterface $formatter): void
     {
         $this->output->setFormatter($formatter);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFormatter()
+    public function getFormatter(): OutputFormatterInterface
     {
         return $this->output->getFormatter();
     }
@@ -98,7 +64,7 @@ class OutputWatcher implements OutputInterface
     /**
      * @param boolean $wasWritten
      */
-    public function setWasWritten($wasWritten)
+    public function setWasWritten(bool $wasWritten): void
     {
         $this->wasWritten = $wasWritten;
     }
@@ -106,39 +72,27 @@ class OutputWatcher implements OutputInterface
     /**
      * @return boolean
      */
-    public function getWasWritten()
+    public function getWasWritten(): bool
     {
         return $this->wasWritten;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isQuiet()
+    public function isQuiet(): bool
     {
         return self::VERBOSITY_QUIET === $this->getVerbosity();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isVerbose()
+    public function isVerbose(): bool
     {
         return self::VERBOSITY_VERBOSE <= $this->getVerbosity();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isVeryVerbose()
+    public function isVeryVerbose(): bool
     {
         return self::VERBOSITY_VERY_VERBOSE <= $this->getVerbosity();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isDebug()
+    public function isDebug(): bool
     {
         return self::VERBOSITY_DEBUG <= $this->getVerbosity();
     }

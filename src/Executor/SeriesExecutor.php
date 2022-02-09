@@ -41,9 +41,6 @@ class SeriesExecutor implements ExecutorInterface
         $this->informer = $informer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function run(array $tasks, array $hosts)
     {
         $localhost = new Localhost();

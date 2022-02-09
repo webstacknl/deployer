@@ -20,9 +20,6 @@ class SymfonyTemplate extends FrameworkTemplate
         return 'symfony';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function getExtraContent()
     {
         return <<<PHP
